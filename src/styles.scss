@@ -1,1 +1,75 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+.app-root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  padding: {
+    bottom: 25px;
+    top: 25px;
+    right: 55px;
+    left: 55px;
+  }
+  background-color: #0057D8;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  outline: none;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 0 auto;
+}
+
+@media (max-width: 575px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  .container {
+    width: 90%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 720px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    max-width: 100%;
+  }
+}

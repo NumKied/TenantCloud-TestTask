@@ -1,20 +1,273 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="permission container">
+  
+  <h1 class="permission__title">Permission</h1>
 
+  <ul class="permission__row row">
+    <li class="row__col">Sections</li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" [checked]="triggers.actions.view >= sectionsArr.length" data-id="viewAll" (click)="clicked($event)">
+        <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable checkbox-holder__fake-checkbox_all"></span>
+        <span class="checkbox-holder__actionName">Check all</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" [disabled]="triggers.actions.view < 1" [checked]="triggers.checkAll.editAll" data-id="editAll" (click)="clicked($event)">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true,
+          'checkbox-holder__fake-checkbox_all': true,
+          'checkbox-holder__fake-checkbox_enable': triggers.actions.view >= 1}"></span>
+        <span class="checkbox-holder__actionName">Check all</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" [disabled]="triggers.actions.edit < 1" [checked]="triggers.checkAll.removeAll" data-id="removeAll" (click)="clicked($event)">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true,
+          'checkbox-holder__fake-checkbox_all': true,
+          'checkbox-holder__fake-checkbox_enable': triggers.actions.edit >= 1}"></span>
+        <span class="checkbox-holder__actionName">Check all</span>
+      </label>
+    </li>
+  </ul>
+
+  <ul class="permission__row row">
+    <li class="row__col">Calendar</li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-1" [checked]="triggers.sections.calendar > 0">
+        <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable"></span>
+        <span class="checkbox-holder__actionName">View</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-1" [disabled]="triggers.sections.calendar < 1" [checked]="triggers.sections.calendar > 1">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.calendar >= 1}"></span>
+        <span class="checkbox-holder__actionName">Edit</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-1" [disabled]="triggers.sections.calendar < 2" [checked]="triggers.sections.calendar > 2">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.calendar >= 2}"></span>
+        <span class="checkbox-holder__actionName">Remove</span>
+      </label>
+    </li>
+  </ul>
+
+  <ul class="permission__row row">
+    <li class="row__col">Profile</li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-2" [checked]="triggers.sections.profile > 0">
+        <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable"></span>
+        <span class="checkbox-holder__actionName">View</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-2" [disabled]="triggers.sections.profile < 1" [checked]="triggers.sections.profile > 1">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.profile >= 1}"></span>
+        <span class="checkbox-holder__actionName">Edit</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-2" [disabled]="triggers.sections.profile < 2" [checked]="triggers.sections.profile > 2">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.profile >= 2}"></span>
+        <span class="checkbox-holder__actionName">Remove</span>
+      </label>
+    </li>
+  </ul>
+
+  <ul class="permission__row row">
+    <li class="row__col">Property</li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-3" [checked]="triggers.sections.property > 0">
+        <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable"></span>
+        <span class="checkbox-holder__actionName">View</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-3" [disabled]="triggers.sections.property < 1" [checked]="triggers.sections.property > 1">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.property >= 1}"></span>
+        <span class="checkbox-holder__actionName">Edit</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-3" [disabled]="triggers.sections.property < 2" [checked]="triggers.sections.property > 2">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.property >= 2}"></span>
+        <span class="checkbox-holder__actionName">Remove</span>
+      </label>
+    </li>
+  </ul>
+
+  <ul class="permission__row row">
+    <li class="row__col">Contacts</li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-4" [checked]="triggers.sections.contacts > 0">
+        <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable"></span>
+        <span class="checkbox-holder__actionName">View</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-4" [disabled]="triggers.sections.contacts < 1" [checked]="triggers.sections.contacts > 1">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.contacts >= 1}"></span>
+        <span class="checkbox-holder__actionName">Edit</span>
+      </label>
+    </li>
+    <li class="row__col">
+      <label class="checkbox-holder">
+        <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-4" [disabled]="triggers.sections.contacts < 2" [checked]="triggers.sections.contacts > 2">
+        <span [ngClass]="{
+          'checkbox-holder__fake-checkbox': true, 
+          'checkbox-holder__fake-checkbox_enable': triggers.sections.contacts >= 2}"></span>
+        <span class="checkbox-holder__actionName">Remove</span>
+      </label>
+    </li>
+  </ul>
+
+  <ul class="mobile-content" *ngIf="mobile">
+
+    <li class="mobile-content__section mobile-section">Check All
+      <div class="mobile-section__actions">
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" [checked]="triggers.actions.view >= sectionsArr.length" data-id="viewAll" (click)="clicked($event)">
+          <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable checkbox-holder__fake-checkbox_all  checkbox-holder__fake-checkbox_view"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" [disabled]="triggers.actions.view < 1" [checked]="triggers.checkAll.editAll" data-id="editAll" (click)="clicked($event)">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_edit': true,
+            'checkbox-holder__fake-checkbox': true,
+            'checkbox-holder__fake-checkbox_all': true,
+            'checkbox-holder__fake-checkbox_enable': triggers.actions.view >= 1}"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" [disabled]="triggers.actions.edit < 1" [checked]="triggers.checkAll.removeAll" data-id="removeAll" (click)="clicked($event)">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_remove': true,
+            'checkbox-holder__fake-checkbox': true,
+            'checkbox-holder__fake-checkbox_all': true,
+            'checkbox-holder__fake-checkbox_enable': triggers.actions.edit >= 1}"></span>
+        </label>
+      </div>
+    </li>
+
+    <li class="mobile-content__section mobile-section">Calendar
+      <div class="mobile-section__actions">
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-1" [checked]="triggers.sections.calendar > 0">
+          <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable checkbox-holder__fake-checkbox_view"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-1" [disabled]="triggers.sections.calendar < 1" [checked]="triggers.sections.calendar > 1">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_edit': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.calendar >= 1}"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-1" [disabled]="triggers.sections.calendar < 2" [checked]="triggers.sections.calendar > 2">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_remove': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.calendar >= 2}"></span>
+        </label>
+      </div>
+    </li>
+  
+    <li class="mobile-content__section mobile-section">Profile
+      <div class="mobile-section__actions">
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-2" [checked]="triggers.sections.profile > 0">
+          <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable checkbox-holder__fake-checkbox_view"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-2" [disabled]="triggers.sections.profile < 1" [checked]="triggers.sections.profile > 1">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_edit': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.profile >= 1}"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-2" [disabled]="triggers.sections.profile < 2" [checked]="triggers.sections.profile > 2">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_remove': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.profile >= 2}"></span>
+        </label>
+      </div>
+    </li>
+  
+    <li class="mobile-content__section mobile-section">Property
+      <div class="mobile-section__actions">
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-3" [checked]="triggers.sections.property > 0">
+          <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable checkbox-holder__fake-checkbox_view"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-3" [disabled]="triggers.sections.property < 1" [checked]="triggers.sections.property > 1">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_edit': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.property >= 1}"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-3" [disabled]="triggers.sections.property < 2" [checked]="triggers.sections.property > 2">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_remove': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.property >= 2}"></span>
+        </label>
+      </div>
+    </li>
+  
+    <li class="mobile-content__section mobile-section">Contacts
+      <div class="mobile-section__actions">
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="view-4" [checked]="triggers.sections.contacts > 0">
+          <span class="checkbox-holder__fake-checkbox checkbox-holder__fake-checkbox_enable checkbox-holder__fake-checkbox_view"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="edit-4" [disabled]="triggers.sections.contacts < 1" [checked]="triggers.sections.contacts > 1">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_edit': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.contacts >= 1}"></span>
+        </label>
+        <label class="checkbox-holder checkbox-holder_mobile">
+          <input type="checkbox" class="checkbox-holder__checkbox" (click)="clicked($event)" data-id="remove-4" [disabled]="triggers.sections.contacts < 2" [checked]="triggers.sections.contacts > 2">
+          <span [ngClass]="{
+            'checkbox-holder__fake-checkbox_remove': true,
+            'checkbox-holder__fake-checkbox': true, 
+            'checkbox-holder__fake-checkbox_enable': triggers.sections.contacts >= 2}"></span>
+        </label>
+      </div>
+    </li>
+  </ul>
+
+  <app-save-button></app-save-button>
+</div>

@@ -1,0 +1,24 @@
+.button-holder {
+  display: flex;
+  justify-content: center;
+  &__button {
+    margin: {
+      top: 55px;
+      bottom: 55px;
+      right: 100px;
+    }
+    float: right;
+    @media (max-width: 991px) {
+      float: none;
+      width: 70%;
+      margin-right: 0;
+      font-size: 35px;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+  @media (max-width: 991px) {
+    width: 100%;
+  }
+}
