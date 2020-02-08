@@ -53,6 +53,7 @@ export class AppComponent {
   currentAction = '';
   currentNumber = 0;
   clicked(event) {
+    console.log(window)
     for (let i = 0; ; i++) {
       if (event.target.dataset.id[i] === '-') {
         this.currentAction = event.target.dataset.id.slice(0, i);
@@ -105,5 +106,8 @@ export class AppComponent {
       }
     }
     this.currentNumber = 0;
+    console.log(this.triggers.actions);
+    console.log(this.triggers.sections);
+    console.log(document)
   }
 }
